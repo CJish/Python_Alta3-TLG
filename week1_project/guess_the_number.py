@@ -6,7 +6,7 @@
 import random
 import os
 
-def get_range_and_tries(): # create a function to set the min/max
+def get_range_and_tries(): # sets the min/max of the range, returns min/max & number of tries
     while True:
         try:
             num1 = int(input('Enter the first number: '))
@@ -27,11 +27,11 @@ def get_range_and_tries(): # create a function to set the min/max
                 break
     return min_bound, max_bound, num3
 
-def gen_answer(a, b):
+def gen_answer(a, b): # takes min/max (a/b) and uses those to return a random int in that range
     print(f'I\'m going to choose a number between {a} and {b}.')
     return random.randint(a, b)
 
-def make_guess(a,b,c):
+def make_guess(a,b,c): # inputs the user's guess. checks guess against range, increments counter. returns guess & counter
     print('\nPlease guess a number')
     guess = input()
     c += 1
@@ -43,7 +43,7 @@ def make_guess(a,b,c):
         print(f'Your guess of "{guess}" was not a whole number\nPlease fix your guess to be a whole number between {a} and {b}.')
         return make_guess(a,b,c)
 
-def you_win(a, b):
+def you_win(a, b): # called when user wins. Asks if user wants to play again
     if a == 1:
         print('You got it on your first try!')
         print('That\'s amazing!!!!!!!!!!!!!!!')
@@ -57,17 +57,17 @@ def you_win(a, b):
         print(f'You guessed the number in {a} tries!')
         play_again()
 
-def invalid_guess(a,b,c):
+def invalid_guess(a,b,c): # handles invalid guesses
     print(f'You guessed "{c}".')
     print(f'Your guess must be between {a} and {b}')
 
-def play_again():
+def play_again(): # handles restarting the game if the user desires
     print('Do you want to play again?  y or n')
     play_yn = input()
     if play_yn == 'y':
         clear = lambda: os.system('clear')
         clear()
-        print("\n" * 100)
+        # print("\n" * 100) # this is left over from IDLE
         main()
     else:
         exit()
@@ -105,4 +105,5 @@ def main():
             print('We seem to have an error, but I don\'nt know what it is.')
             continue
 
-main()
+if __name__ == "__main__":
+    main()
